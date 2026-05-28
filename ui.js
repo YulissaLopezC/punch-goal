@@ -34,6 +34,7 @@ function mostrarApp() {
   loginScreen.classList.add('hidden');
   appScreen.classList.remove('hidden');
   $('user-name').textContent = currentUser.displayName?.split(' ')[0] ?? '';
+  $('user-email').textContent = currentUser.email ?? '';
   const photo = $('user-photo');
   if (currentUser.photoURL) {
     photo.src = currentUser.photoURL;
@@ -53,6 +54,14 @@ $('btn-login').addEventListener('click', async () => {
     console.error('Login error:', e);
   }
 });
+
+// User menu dropdown
+$('btn-user-menu').addEventListener('click', (e) => {
+  e.stopPropagation();
+  $('user-dropdown').classList.toggle('hidden');
+});
+
+document.addEventListener('click', () => $('user-dropdown').classList.add('hidden'));
 
 $('btn-signout').addEventListener('click', () => cerrarSesion());
 
